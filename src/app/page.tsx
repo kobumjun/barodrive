@@ -36,7 +36,7 @@ const worryBubbles = [
 ];
 
 export default async function HomePage() {
-  const reviews = await getPublishedReviews(6);
+  const reviews = await getPublishedReviews(4);
 
   return (
     <div className="space-y-20 pb-8">
@@ -196,7 +196,7 @@ export default async function HomePage() {
       <section>
         <SectionTitle eyebrow="후기 미리보기" title="실제 수강생의 변화" />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {reviews.slice(0, 6).map((review) => (
+          {reviews.slice(0, 4).map((review) => (
             <Link
               key={review.id}
               href={`/reviews/${review.slug || review.id}`}
