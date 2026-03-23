@@ -50,15 +50,15 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="fixed inset-0 z-[70] md:hidden" role="dialog" aria-modal="true">
+        <div className="fixed inset-0 z-[80] md:hidden" role="dialog" aria-modal="true">
           <button
             type="button"
             className="absolute inset-0 bg-black/45"
             aria-label="메뉴 닫기"
             onClick={() => setOpen(false)}
           />
-          <aside className="absolute right-0 top-0 h-full w-[84%] max-w-xs bg-white p-5 shadow-2xl">
-            <div className="mb-5 flex items-center justify-between border-b border-zinc-200 pb-4">
+          <aside className="absolute left-0 top-0 w-full bg-white px-5 py-6 shadow-2xl">
+            <div className="mb-6 flex items-center justify-between border-b border-zinc-200 pb-4">
               <span className="font-bold text-zinc-900">{BRAND}</span>
               <button
                 type="button"
@@ -68,13 +68,13 @@ export function SiteHeader() {
                 닫기
               </button>
             </div>
-            <nav className="space-y-2">
+            <nav className="grid gap-4">
               {menus.map((menu) => (
                 <Link
                   key={menu.href}
                   href={menu.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-xl px-3 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
+                  className="block rounded-xl border border-zinc-200 px-4 py-3 text-base font-semibold text-zinc-900 transition hover:bg-zinc-100 active:bg-zinc-200"
                 >
                   {menu.label}
                 </Link>

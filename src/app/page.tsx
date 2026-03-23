@@ -99,32 +99,34 @@ export default async function HomePage() {
               <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-amber-300/35 blur-3xl" />
               <div className="absolute -bottom-16 -left-8 h-48 w-48 rounded-full bg-cyan-300/25 blur-3xl" />
               <div className="absolute inset-0 opacity-25 [background:linear-gradient(120deg,transparent_0%,rgba(255,255,255,.8)_48%,transparent_100%)]" />
-              <div className="relative grid h-full gap-4 rounded-[1.2rem] border border-white/25 bg-zinc-900/35 p-5">
-                <div className="grid grid-cols-[1fr_auto] items-center rounded-2xl border border-white/20 bg-white/10 p-4">
+              <div className="relative grid h-full grid-rows-[auto_auto_1fr] gap-4 overflow-hidden rounded-[1.2rem] border border-white/25 bg-zinc-900/35 p-5">
+                <div className="grid w-full grid-cols-[1fr_auto] items-center gap-3 rounded-2xl border border-white/20 bg-white/10 p-4">
                   <div>
                     <p className="text-xs font-semibold text-zinc-200">맞춤 코칭 플랜</p>
-                    <p className="mt-1 text-lg font-bold">수강생 성향 기반 루트 설계</p>
+                    <p className="mt-1 break-keep text-base font-bold leading-6">수강생 성향 기반 루트 설계</p>
                   </div>
                   <span className="rounded-full bg-emerald-300/20 px-3 py-1 text-xs font-semibold text-emerald-100">
                     1:1
                   </span>
                 </div>
-                <div className="grid gap-3 md:grid-cols-2">
-                  <div className="rounded-2xl border border-white/20 bg-white/10 p-4">
+                <div className="grid w-full gap-3 sm:grid-cols-2">
+                  <div className="w-full rounded-2xl border border-white/20 bg-white/10 p-4">
                     <p className="text-xs text-zinc-200">안전 중심</p>
-                    <p className="mt-1 text-sm font-semibold">보험/대응 프로세스 사전 안내</p>
+                    <p className="mt-1 break-keep text-sm font-semibold leading-6">보험/대응 프로세스 사전 안내</p>
                   </div>
-                  <div className="rounded-2xl border border-white/20 bg-white/10 p-4">
+                  <div className="w-full rounded-2xl border border-white/20 bg-white/10 p-4">
                     <p className="text-xs text-zinc-200">실전 중심</p>
-                    <p className="mt-1 text-sm font-semibold">도심/주차/차선변경 맞춤 훈련</p>
+                    <p className="mt-1 break-keep text-sm font-semibold leading-6">도심/주차/차선변경 맞춤 훈련</p>
                   </div>
                 </div>
-                <div className="mt-auto flex items-end justify-between rounded-2xl border border-white/20 bg-white/10 p-4">
-                  <div>
+                <div className="grid w-full grid-cols-[1fr_auto] items-center gap-3 rounded-2xl border border-white/20 bg-white/10 p-4">
+                  <div className="min-w-0">
                     <p className="text-xs text-zinc-200">수강생 만족도 관리</p>
-                    <p className="mt-1 text-sm font-semibold">강사 교체 가능 · 단계별 피드백</p>
+                    <p className="mt-1 break-keep text-sm font-semibold leading-6">강사 교체 가능 · 단계별 피드백</p>
                   </div>
-                  <span className="text-2xl">✨</span>
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-xl">
+                    ✨
+                  </span>
                 </div>
               </div>
             </div>
