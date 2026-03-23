@@ -1,31 +1,35 @@
 import Link from "next/link";
+import { ClipboardList, MessageCircle, Phone } from "lucide-react";
 import { KAKAO_CHAT_URL } from "@/lib/constants";
 import { toPhoneLink } from "@/lib/site-settings";
 
 const buttonBase =
-  "inline-flex items-center justify-center rounded-full px-4 py-3 text-sm font-bold shadow-lg transition duration-200 hover:-translate-y-0.5";
+  "inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(0,0,0,0.08)] px-4 py-2.5 text-sm font-extrabold shadow-[0_10px_24px_rgba(0,0,0,0.18)] transition duration-200 hover:-translate-y-0.5";
 
 export function FloatingCTA({ phoneNumber }: { phoneNumber: string }) {
   return (
-    <div className="fixed bottom-5 right-3 z-30 flex flex-col gap-2 sm:bottom-4 sm:right-4">
+    <div className="fixed bottom-5 right-3 z-[90] flex flex-col gap-2 sm:bottom-4 sm:right-4">
       <Link
         href="/pricing#inquiry-form"
-        className={`${buttonBase} bg-gradient-to-r from-amber-400 to-orange-400 text-zinc-900 shadow-amber-300/60 hover:from-amber-300 hover:to-orange-300`}
+        className={`${buttonBase} bg-[#22C55E] text-white hover:bg-[#16A34A]`}
       >
+        <ClipboardList size={16} />
         연수신청
       </Link>
       <a
         href={KAKAO_CHAT_URL}
         target="_blank"
         rel="noreferrer"
-        className={`${buttonBase} bg-zinc-900 text-white shadow-zinc-400/40 hover:bg-zinc-800`}
+        className={`${buttonBase} bg-[#FEE500] text-[#111111] hover:bg-[#F2DA00]`}
       >
+        <MessageCircle size={16} />
         카카오톡 상담
       </a>
       <a
         href={toPhoneLink(phoneNumber)}
-        className={`${buttonBase} border border-zinc-300 bg-white text-zinc-900 shadow-zinc-300/50 hover:bg-zinc-100`}
+        className={`${buttonBase} bg-[#2563EB] text-white hover:bg-[#1D4ED8]`}
       >
+        <Phone size={16} />
         전화문의
       </a>
     </div>

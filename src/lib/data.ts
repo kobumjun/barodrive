@@ -1,27 +1,7 @@
-import { FALLBACK_PRICING, FALLBACK_REVIEWS } from "@/lib/constants";
+import { FALLBACK_PRICING } from "@/lib/constants";
 import { getSupabaseAdmin, hasSupabase } from "@/lib/supabase";
 import { PricingItem, Review } from "@/types";
 import { unstable_noStore as noStore } from "next/cache";
-
-function sortByDateDesc(items: Review[]) {
-  return [...items].sort(
-    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
-  );
-}
-
-function mergeReviews(dbReviews: Review[]) {
-  const merged = [...dbReviews, ...FALLBACK_REVIEWS];
-  const unique = new Map<string, Review>();
-
-  for (const item of merged) {
-    const key = item.slug?.trim() || item.id;
-    if (!unique.has(key)) {
-      unique.set(key, item);
-    }
-  }
-
-  return sortByDateDesc(Array.from(unique.values()));
-}
 
 export async function getPricing(): Promise<PricingItem[]> {
   noStore();
@@ -34,7 +14,7 @@ export async function getPricing(): Promise<PricingItem[]> {
 
 export async function getPublishedReviews(limit?: number): Promise<Review[]> {
   noStore();
-  if (!hasSupabase) return limit ? FALLBACK_REVIEWS.slice(0, limit) : FALLBACK_REVIEWS;
+  if (!hasSupabase) return [];
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from("reviews")
@@ -42,17 +22,13 @@ export async function getPublishedReviews(limit?: number): Promise<Review[]> {
     .eq("is_published", true)
     .order("created_at", { ascending: false });
 
-  if (error || !data) {
-    return limit ? FALLBACK_REVIEWS.slice(0, limit) : FALLBACK_REVIEWS;
-  }
-
-  const merged = mergeReviews(data);
-  return limit ? merged.slice(0, limit) : merged;
+  if (error || !data) return [];
+  return limit ? data.slice(0, limit) : data;
 }
 
 export async function getReviewBySlug(slug: string): Promise<Review | null> {
   noStore();
-  if (!hasSupabase) return FALLBACK_REVIEWS.find((review) => review.slug === slug) ?? null;
+  if (!hasSupabase) return null;
   const supabase = getSupabaseAdmin();
   const { data } = await supabase
     .from("reviews")
@@ -70,5 +46,5 @@ export async function getReviewBySlug(slug: string): Promise<Review | null> {
     .maybeSingle();
   if (byId) return byId;
   console.warn(`[reviews] not found by slug/id: ${slug}`);
-  return FALLBACK_REVIEWS.find((review) => review.slug === slug) ?? null;
+  return null;
 }

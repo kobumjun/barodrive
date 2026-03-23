@@ -43,9 +43,9 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-20 pb-8">
-      <section className="relative overflow-hidden rounded-[2rem] border border-zinc-200/80 bg-gradient-to-br from-[#111827] via-[#1f2937] to-[#0f172a] px-6 py-10 text-white shadow-2xl md:px-10 md:py-14">
-        <div className="absolute -right-20 -top-12 h-64 w-64 rounded-full bg-amber-400/20 blur-3xl" />
-        <div className="absolute -bottom-16 left-20 h-56 w-56 rounded-full bg-cyan-300/15 blur-3xl" />
+      <section className="relative overflow-hidden rounded-2xl border border-zinc-200/80 bg-gradient-to-br from-[#0f172a] to-[#1e293b] px-6 py-10 text-white shadow-lg md:px-10 md:py-14">
+        <div className="absolute -right-20 -top-12 h-64 w-64 rounded-full bg-amber-400/10 blur-3xl" />
+        <div className="absolute -bottom-16 left-20 h-56 w-56 rounded-full bg-cyan-300/10 blur-3xl" />
         <div className="absolute inset-0 opacity-20 [background:radial-gradient(circle_at_1px_1px,white_1px,transparent_1px)] [background-size:18px_18px]" />
 
         <div className="relative grid items-center gap-10 md:grid-cols-2">
@@ -98,12 +98,12 @@ export default async function HomePage() {
             <div className="absolute left-10 bottom-2 hidden rounded-2xl border border-white/25 bg-white/10 px-4 py-2 text-sm backdrop-blur md:block">
               🛡️ 안전/보험 안내
             </div>
-            <div className="relative h-[420px] overflow-hidden rounded-[1.8rem] border border-white/20 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-5 shadow-2xl backdrop-blur">
+            <div className="relative h-[420px] overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-5 shadow-md backdrop-blur">
               <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-amber-300/35 blur-3xl" />
               <div className="absolute -bottom-16 -left-8 h-48 w-48 rounded-full bg-cyan-300/25 blur-3xl" />
               <div className="absolute inset-0 opacity-25 [background:linear-gradient(120deg,transparent_0%,rgba(255,255,255,.8)_48%,transparent_100%)]" />
-              <div className="relative grid h-full grid-rows-[auto_auto_1fr] gap-4 overflow-hidden rounded-[1.2rem] border border-white/25 bg-zinc-900/35 p-5">
-                <div className="grid w-full grid-cols-[1fr_auto] items-center gap-3 rounded-2xl border border-white/20 bg-white/10 p-4">
+              <div className="relative grid h-full grid-rows-[auto_auto_1fr] gap-4 overflow-hidden rounded-2xl border border-white/25 bg-zinc-900/35 p-5">
+                <div className="grid w-full grid-cols-[1fr_auto] items-center gap-3 rounded-xl border border-white/20 bg-white/10 p-4">
                   <div>
                     <p className="text-xs font-semibold text-zinc-200">맞춤 코칭 플랜</p>
                     <p className="mt-1 break-keep text-base font-bold leading-6">수강생 성향 기반 루트 설계</p>
@@ -113,16 +113,16 @@ export default async function HomePage() {
                   </span>
                 </div>
                 <div className="grid w-full gap-3 sm:grid-cols-2">
-                  <div className="w-full rounded-2xl border border-white/20 bg-white/10 p-4">
+                  <div className="w-full rounded-xl border border-white/20 bg-white/10 p-4">
                     <p className="text-xs text-zinc-200">안전 중심</p>
                     <p className="mt-1 break-keep text-sm font-semibold leading-6">보험/대응 프로세스 사전 안내</p>
                   </div>
-                  <div className="w-full rounded-2xl border border-white/20 bg-white/10 p-4">
+                  <div className="w-full rounded-xl border border-white/20 bg-white/10 p-4">
                     <p className="text-xs text-zinc-200">실전 중심</p>
                     <p className="mt-1 break-keep text-sm font-semibold leading-6">도심/주차/차선변경 맞춤 훈련</p>
                   </div>
                 </div>
-                <div className="grid w-full grid-cols-[1fr_auto] items-center gap-3 rounded-2xl border border-white/20 bg-white/10 p-4">
+                <div className="grid w-full grid-cols-[1fr_auto] items-center gap-3 rounded-xl border border-white/20 bg-white/10 p-4">
                   <div className="min-w-0">
                     <p className="text-xs text-zinc-200">수강생 만족도 관리</p>
                     <p className="mt-1 break-keep text-sm font-semibold leading-6">강사 교체 가능 · 단계별 피드백</p>
@@ -147,9 +147,8 @@ export default async function HomePage() {
           {worryBubbles.map((item, index) => (
             <article
               key={item.worry}
-              className={`relative rounded-[1.6rem] border p-5 shadow-md ${item.tone}`}
+              className={`relative rounded-xl border p-5 shadow-sm ${item.tone}`}
             >
-              <div className="absolute -bottom-3 left-8 h-6 w-6 rotate-45 border-b border-r bg-inherit" />
               <div className="flex items-start gap-3">
                 <span className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-full bg-white text-2xl shadow-sm">
                   {item.emoji}
@@ -181,7 +180,7 @@ export default async function HomePage() {
           ].map(([num, icon, title, desc], idx) => (
             <article
               key={title}
-              className={`rounded-3xl border p-5 shadow-sm transition hover:-translate-y-0.5 ${
+              className={`rounded-xl border p-5 shadow-sm transition hover:-translate-y-0.5 ${
                 ["bg-white border-zinc-200", "bg-amber-50 border-amber-200", "bg-sky-50 border-sky-200", "bg-emerald-50 border-emerald-200"][idx]
               }`}
             >
@@ -203,7 +202,7 @@ export default async function HomePage() {
             <Link
               key={review.id}
               href={`/reviews/${review.slug || review.id}`}
-              className="group overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+              className="group overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
               <div className="relative overflow-hidden">
                 <Image
@@ -229,7 +228,7 @@ export default async function HomePage() {
 
       <HomePriceSummary />
 
-      <section className="grid gap-8 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm md:grid-cols-[0.9fr_1.1fr] md:p-8">
+      <section className="grid gap-8 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm md:grid-cols-[0.9fr_1.1fr] md:p-8">
         <div>
           <p className="mb-2 text-sm font-semibold text-amber-500">FAQ</p>
           <h3 className="text-3xl font-bold text-zinc-900">처음 상담 전에 가장 많이 묻는 질문</h3>
@@ -241,7 +240,7 @@ export default async function HomePage() {
         <FAQAccordion items={FAQS.slice(0, 4)} />
       </section>
 
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-300 via-amber-200 to-yellow-100 p-8 text-zinc-900 shadow-lg">
+      <section className="relative overflow-hidden rounded-xl bg-gradient-to-r from-amber-300 via-amber-200 to-yellow-100 p-8 text-zinc-900 shadow-md">
         <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/40" />
         <div className="absolute bottom-0 left-0 h-24 w-24 rounded-tr-full bg-white/50" />
         <h2 className="text-3xl font-extrabold">지금 상담받고 운전 자신감을 시작하세요</h2>

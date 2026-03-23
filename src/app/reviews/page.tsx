@@ -27,7 +27,7 @@ export default async function ReviewsPage({
         <SectionTitle
           eyebrow="수강생 후기"
           title="직접 경험한 변화, 솔직한 후기"
-          description="기본 시드 후기와 관리자 등록 후기가 함께 노출됩니다."
+          description="실제 수강생 후기를 최신순으로 확인하세요."
         />
       </section>
 
@@ -61,6 +61,12 @@ export default async function ReviewsPage({
           </Link>
         ))}
       </section>
+
+      {pagedReviews.length === 0 ? (
+        <p className="rounded-xl border border-zinc-200 bg-white p-6 text-center text-zinc-600">
+          등록된 후기가 없습니다
+        </p>
+      ) : null}
 
       {totalPages > 1 ? (
         <nav className="flex flex-wrap items-center justify-center gap-2" aria-label="후기 페이지네이션">
