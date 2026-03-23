@@ -7,7 +7,6 @@ import { BRAND } from "@/lib/constants";
 const menus = [
   { href: "/curriculum", label: "커리큘럼 안내" },
   { href: "/pricing", label: "연수가격/신청" },
-  { href: "/regions", label: "연수지역" },
   { href: "/reviews", label: "수강생 후기" },
   { href: "/faq", label: "FAQ" },
 ];

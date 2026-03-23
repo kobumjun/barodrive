@@ -7,50 +7,46 @@ import { formatPrice } from "@/lib/utils";
 
 const coverByKey = {
   self_car_10h:
-    "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80",
   sedan_10h:
-    "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80&sat=-10",
   suv_10h:
-    "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1200&q=80",
-};
+    "https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80&bri=-5",
+} as const;
+
+const order: Array<"self_car_10h" | "sedan_10h" | "suv_10h"> = [
+  "self_car_10h",
+  "sedan_10h",
+  "suv_10h",
+];
 
 export default async function PricingPage() {
   const pricing = await getPricing();
+  const sortedPricing = [...pricing].sort(
+    (a, b) => order.indexOf(a.key) - order.indexOf(b.key),
+  );
 
   return (
     <div className="space-y-14">
       <section className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-7 shadow-sm md:p-10">
-        <div className="absolute right-0 top-0 h-32 w-32 rounded-bl-full bg-amber-100" />
+        <div className="pointer-events-none absolute right-0 top-0 hidden h-32 w-32 rounded-bl-full bg-amber-100 md:block" />
         <SectionTitle
           eyebrow="연수가격 / 신청"
           title="가격은 투명하게, 코칭은 프리미엄하게"
           description="관리자에서 실시간 수정되는 요금으로 운영됩니다."
         />
         <div className="grid gap-5 md:grid-cols-3">
-          {pricing.map((item) => {
+          {sortedPricing.map((item) => {
             const oldPrice = item.price + 40000;
-            const isRecommended = item.key === "sedan_10h";
 
             return (
               <article
                 key={item.key}
-                className={`overflow-hidden rounded-3xl border bg-white shadow-md transition hover:-translate-y-1 ${
-                  isRecommended ? "border-amber-300 shadow-amber-100" : "border-zinc-200"
-                }`}
+                className="overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-md transition hover:-translate-y-1"
               >
                 <div className="relative h-40">
-                  <Image
-                    src={coverByKey[item.key]}
-                    alt={item.label}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  {isRecommended ? (
-                    <span className="absolute right-3 top-3 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-zinc-900">
-                      추천 플랜
-                    </span>
-                  ) : null}
+                  <Image src={coverByKey[item.key]} alt={item.label} fill className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
                 </div>
                 <div className="p-5">
                   <h3 className="text-lg font-bold text-zinc-900">{item.label}</h3>

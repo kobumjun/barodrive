@@ -10,7 +10,7 @@ export default async function ReviewsPage() {
   return (
     <div className="space-y-10">
       <section className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-7 shadow-sm md:p-10">
-        <div className="absolute -right-10 -top-12 h-44 w-44 rounded-full bg-amber-100" />
+        <div className="pointer-events-none absolute -right-10 -top-12 hidden h-44 w-44 rounded-full bg-amber-100 md:block" />
         <SectionTitle
           eyebrow="수강생 후기"
           title="직접 경험한 변화, 솔직한 후기"
