@@ -13,7 +13,6 @@ export type Inquiry = {
   training_type: string;
   region: string;
   desired_schedule: string;
-  driving_level: string;
   message: string;
   status: string;
   created_at: string;

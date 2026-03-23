@@ -95,15 +95,38 @@ export default async function HomePage() {
             <div className="absolute left-10 bottom-2 hidden rounded-2xl border border-white/25 bg-white/10 px-4 py-2 text-sm backdrop-blur md:block">
               🛡️ 안전/보험 안내
             </div>
-            <div className="overflow-hidden rounded-[1.8rem] border border-white/20 bg-white/5 p-3 shadow-2xl backdrop-blur">
-              <Image
-                src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=1400&q=80"
-                alt="바로드라이브 프리미엄 코칭"
-                width={1200}
-                height={800}
-                className="h-[420px] w-full rounded-[1.2rem] object-cover"
-                priority
-              />
+            <div className="relative h-[420px] overflow-hidden rounded-[1.8rem] border border-white/20 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-5 shadow-2xl backdrop-blur">
+              <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-amber-300/35 blur-3xl" />
+              <div className="absolute -bottom-16 -left-8 h-48 w-48 rounded-full bg-cyan-300/25 blur-3xl" />
+              <div className="absolute inset-0 opacity-25 [background:linear-gradient(120deg,transparent_0%,rgba(255,255,255,.8)_48%,transparent_100%)]" />
+              <div className="relative grid h-full gap-4 rounded-[1.2rem] border border-white/25 bg-zinc-900/35 p-5">
+                <div className="grid grid-cols-[1fr_auto] items-center rounded-2xl border border-white/20 bg-white/10 p-4">
+                  <div>
+                    <p className="text-xs font-semibold text-zinc-200">맞춤 코칭 플랜</p>
+                    <p className="mt-1 text-lg font-bold">수강생 성향 기반 루트 설계</p>
+                  </div>
+                  <span className="rounded-full bg-emerald-300/20 px-3 py-1 text-xs font-semibold text-emerald-100">
+                    1:1
+                  </span>
+                </div>
+                <div className="grid gap-3 md:grid-cols-2">
+                  <div className="rounded-2xl border border-white/20 bg-white/10 p-4">
+                    <p className="text-xs text-zinc-200">안전 중심</p>
+                    <p className="mt-1 text-sm font-semibold">보험/대응 프로세스 사전 안내</p>
+                  </div>
+                  <div className="rounded-2xl border border-white/20 bg-white/10 p-4">
+                    <p className="text-xs text-zinc-200">실전 중심</p>
+                    <p className="mt-1 text-sm font-semibold">도심/주차/차선변경 맞춤 훈련</p>
+                  </div>
+                </div>
+                <div className="mt-auto flex items-end justify-between rounded-2xl border border-white/20 bg-white/10 p-4">
+                  <div>
+                    <p className="text-xs text-zinc-200">수강생 만족도 관리</p>
+                    <p className="mt-1 text-sm font-semibold">강사 교체 가능 · 단계별 피드백</p>
+                  </div>
+                  <span className="text-2xl">✨</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

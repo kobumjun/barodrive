@@ -53,7 +53,6 @@ export function InquiryForm() {
         </select>
         <input name="region" required placeholder="희망 지역" className="rounded-xl border border-zinc-200 px-4 py-3" />
         <input name="desired_schedule" required placeholder="희망 날짜/시간" className="rounded-xl border border-zinc-200 px-4 py-3" />
-        <input name="driving_level" required placeholder="운전 경험 수준" className="rounded-xl border border-zinc-200 px-4 py-3" />
         <textarea name="message" placeholder="문의 내용" className="min-h-30 rounded-xl border border-zinc-200 px-4 py-3 md:col-span-2" />
         <button disabled={loading} className="rounded-xl bg-amber-500 px-5 py-3 font-semibold text-zinc-950 transition hover:bg-amber-400 disabled:opacity-60">
           {loading ? "접수 중..." : "신청 접수"}

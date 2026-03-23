@@ -4,7 +4,7 @@ import { getSupabaseAdmin } from "@/lib/supabase";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const required = ["name", "phone", "training_type", "region", "desired_schedule", "driving_level"];
+    const required = ["name", "phone", "training_type", "region", "desired_schedule"];
 
     for (const key of required) {
       if (!body[key]) {
@@ -19,7 +19,8 @@ export async function POST(request: Request) {
       training_type: body.training_type,
       region: body.region,
       desired_schedule: body.desired_schedule,
-      driving_level: body.driving_level,
+      // Keep backward compatibility with existing NOT NULL schema.
+      driving_level: "미기재",
       message: body.message ?? "",
       status: "신규",
     });
