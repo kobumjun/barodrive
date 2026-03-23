@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ClipboardList, MessageCircle, Phone } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { KAKAO_CHAT_URL } from "@/lib/constants";
 import { toPhoneLink } from "@/lib/site-settings";
 
@@ -7,6 +10,9 @@ const buttonBase =
   "inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(0,0,0,0.08)] px-4 py-2.5 text-sm font-extrabold shadow-[0_10px_24px_rgba(0,0,0,0.18)] transition duration-200 hover:-translate-y-0.5";
 
 export function FloatingCTA({ phoneNumber }: { phoneNumber: string }) {
+  const pathname = usePathname();
+  if (pathname.startsWith("/admin")) return null;
+
   return (
     <div className="fixed bottom-5 right-3 z-[90] flex flex-col gap-2 sm:bottom-4 sm:right-4">
       <Link
