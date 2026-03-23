@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 바로드라이브 랜딩/예약 사이트
 
-## Getting Started
+Next.js(App Router) + TypeScript + Tailwind + Supabase 기반의 프리미엄 운전 연수 홍보/신청 사이트입니다.
 
-First, run the development server:
+## 실행 방법
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 필수 환경변수
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `NEXT_PUBLIC_KAKAO_CHAT_URL`
+- `ADMIN_PIN`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Supabase 준비
 
-## Learn More
+1. `supabase/schema.sql` 실행
+2. Storage에 public bucket `reviews` 생성
+3. 필요 시 RLS 정책 구성
 
-To learn more about Next.js, take a look at the following resources:
+## 페이지 구성
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `/` 메인
+- `/curriculum` 커리큘럼
+- `/pricing` 연수가격/신청
+- `/regions` 연수지역
+- `/reviews` 후기 목록
+- `/reviews/[slug]` 후기 상세
+- `/faq` FAQ
+- `/admin` 관리자
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 관리자 기능
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 가격 수정
+- 후기 추가/삭제 (이미지 업로드 포함)
+- 신청 접수 내역 확인
+- PIN 기반 세션 로그인/로그아웃
