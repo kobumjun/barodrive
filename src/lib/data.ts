@@ -14,8 +14,9 @@ function mergeReviews(dbReviews: Review[]) {
   const unique = new Map<string, Review>();
 
   for (const item of merged) {
-    if (!unique.has(item.slug)) {
-      unique.set(item.slug, item);
+    const key = item.slug?.trim() || item.id;
+    if (!unique.has(key)) {
+      unique.set(key, item);
     }
   }
 
@@ -61,5 +62,13 @@ export async function getReviewBySlug(slug: string): Promise<Review | null> {
     .maybeSingle();
 
   if (data) return data;
+  const { data: byId } = await supabase
+    .from("reviews")
+    .select("*")
+    .eq("id", slug)
+    .eq("is_published", true)
+    .maybeSingle();
+  if (byId) return byId;
+  console.warn(`[reviews] not found by slug/id: ${slug}`);
   return FALLBACK_REVIEWS.find((review) => review.slug === slug) ?? null;
 }

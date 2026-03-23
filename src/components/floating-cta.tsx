@@ -6,7 +6,7 @@ const buttonBase =
 
 export function FloatingCTA() {
   return (
-    <div className="fixed bottom-4 right-3 z-50 flex flex-col gap-2 sm:right-4">
+    <div className="fixed bottom-5 right-3 z-30 flex flex-col gap-2 sm:bottom-4 sm:right-4">
       <Link
         href="/pricing#inquiry-form"
         className={`${buttonBase} bg-gradient-to-r from-amber-400 to-orange-400 text-zinc-900 shadow-amber-300/60 hover:from-amber-300 hover:to-orange-300`}

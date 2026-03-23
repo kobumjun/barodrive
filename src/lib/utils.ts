@@ -16,5 +16,12 @@ export function slugify(text: string) {
     .trim()
     .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export function generateReviewSlug(title: string) {
+  const base = slugify(title);
+  const suffix = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  return base ? `${base}-${suffix}` : `review-${suffix}`;
 }

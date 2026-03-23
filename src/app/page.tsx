@@ -173,8 +173,8 @@ export default async function HomePage() {
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {reviews.slice(0, 6).map((review) => (
             <Link
-              key={review.slug}
-              href={`/reviews/${review.slug}`}
+              key={review.id}
+              href={`/reviews/${review.slug || review.id}`}
               className="group overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
             >
               <div className="relative overflow-hidden">

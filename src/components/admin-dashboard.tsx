@@ -2,7 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import { getSupabaseClient } from "@/lib/supabase";
-import { formatDate, slugify } from "@/lib/utils";
+import { formatDate, generateReviewSlug, slugify } from "@/lib/utils";
 import { Inquiry, PricingItem, Review } from "@/types";
 
 type Tab = "pricing" | "reviews" | "inquiries";
@@ -113,7 +113,7 @@ export function AdminDashboard({
 
     const payload = {
       title: String(data.title),
-      slug: slugify(String(data.title)),
+      slug: generateReviewSlug(String(data.title)),
       excerpt: String(data.excerpt),
       content: String(data.content),
       author_name: String(data.author_name),
@@ -169,6 +169,7 @@ export function AdminDashboard({
     const content = window.prompt("새 본문", review.content);
     if (!content) return;
 
+    const nextSlug = slugify(title) || review.slug || generateReviewSlug(title);
     const response = await fetch(`/api/admin/reviews/${review.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -176,7 +177,7 @@ export function AdminDashboard({
         title,
         excerpt,
         content,
-        slug: slugify(title),
+        slug: nextSlug,
       }),
     });
 
@@ -187,7 +188,7 @@ export function AdminDashboard({
     setReviews((prev) =>
       prev.map((item) =>
         item.id === review.id
-          ? { ...item, title, excerpt, content, slug: slugify(title) }
+          ? { ...item, title, excerpt, content, slug: nextSlug }
           : item,
       ),
     );

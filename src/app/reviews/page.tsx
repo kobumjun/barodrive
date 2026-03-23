@@ -21,8 +21,8 @@ export default async function ReviewsPage() {
       <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {reviews.map((review, index) => (
           <Link
-            key={review.slug}
-            href={`/reviews/${review.slug}`}
+            key={review.id}
+            href={`/reviews/${review.slug || review.id}`}
             className="group overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
           >
             <div className="relative">
