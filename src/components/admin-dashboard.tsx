@@ -10,6 +10,12 @@ type Tab = "pricing" | "reviews" | "inquiries";
 const imageTypes = ["image/jpeg", "image/png", "image/webp"];
 const maxImageSize = 5 * 1024 * 1024;
 
+function createStoragePath(file: File) {
+  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "-").toLowerCase();
+  const random = crypto.randomUUID().slice(0, 8);
+  return `uploads/${file.lastModified}-${random}-${safeName}`;
+}
+
 export function AdminDashboard({
   initialPricing,
   initialReviews,
@@ -52,7 +58,7 @@ export function AdminDashboard({
 
     setUploading(true);
     const supabase = getSupabaseClient();
-    const path = `reviews/${file.lastModified}-${file.name}`;
+    const path = createStoragePath(file);
     const { error } = await supabase.storage.from("reviews").upload(path, file, { upsert: true });
 
     if (error) {
@@ -74,7 +80,7 @@ export function AdminDashboard({
       return;
     }
     const supabase = getSupabaseClient();
-    const newPath = `reviews/${file.lastModified}-${file.name}`;
+    const newPath = createStoragePath(file);
     const { error } = await supabase.storage.from("reviews").upload(newPath, file, { upsert: true });
     if (error) {
       setMessage(`이미지 교체 실패: ${error.message}`);
@@ -128,9 +134,16 @@ export function AdminDashboard({
       return;
     }
 
+    const created = await response.json();
     setMessage("후기 저장 완료");
     form.reset();
-    location.reload();
+    setImageUrl("");
+    setStoragePath("");
+    if (created.review) {
+      setReviews((prev) => [created.review, ...prev]);
+    } else {
+      location.reload();
+    }
   }
 
   async function deleteReview(id: string) {

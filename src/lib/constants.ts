@@ -45,39 +45,120 @@ export const FAQS: FAQItem[] = [
 
 export const FALLBACK_REVIEWS: Review[] = [
   {
-    id: "1",
-    title: "출퇴근길이 두렵지 않아졌어요",
-    slug: "first-commute-confidence",
-    excerpt: "3주 코칭 후 혼자 도심 주행이 가능해졌습니다.",
+    id: "seed-1",
+    title: "주차가 제일 무서웠는데 이제는 먼저 들어갑니다",
+    slug: "seed-parking-confidence",
+    excerpt: "평행주차 포인트를 반복해서 익히니 실전에서 손이 덜 떨렸어요.",
     content:
-      "초보라 도로에만 나가면 손에 땀이 났는데, 강사님이 제 속도에 맞춰 코칭해주셔서 출퇴근길을 스스로 운전하게 됐어요.",
+      "주차할 때 뒤차가 기다리면 너무 긴장했는데, 강사님이 시야 기준점을 아주 쉽게 알려주셔서 이제는 침착하게 주차할 수 있어요. 특히 골목 주차가 정말 많이 편해졌습니다.",
     author_name: "김**",
-    created_at: "2026-03-01",
-    image_url: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80",
+    created_at: "2026-03-22",
+    image_url:
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80",
     is_published: true,
   },
   {
-    id: "2",
-    title: "주차가 제일 큰 고민이었는데 해결됐어요",
-    slug: "parking-confidence-up",
-    excerpt: "평행/후진 주차를 반복 훈련해 실전 자신감이 생겼어요.",
+    id: "seed-2",
+    title: "장롱면허 8년, 출퇴근 혼자 운전 시작했어요",
+    slug: "seed-long-break-commute",
+    excerpt: "출퇴근 동선 위주로 연수 받아서 바로 실전에 적용했습니다.",
     content:
-      "주차만 생각하면 피하고 싶었는데, 주차 동선과 시야 포인트를 체계적으로 알려주셔서 이제는 혼자서도 가능합니다.",
+      "면허만 있고 운전은 거의 안 해서 늘 겁이 났는데, 동네부터 큰길까지 단계적으로 연습해주셔서 출퇴근길 운전이 가능해졌어요. 혼자 운전할 수 있다는 게 가장 큰 변화입니다.",
     author_name: "이**",
-    created_at: "2026-02-21",
-    image_url: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80",
+    created_at: "2026-03-20",
+    image_url:
+      "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80",
     is_published: true,
   },
   {
-    id: "3",
-    title: "강사 교체 시스템이 신뢰를 줬어요",
-    slug: "coach-switch-trust",
-    excerpt: "수강자 중심 운영이라 더 안심하고 시작할 수 있었습니다.",
+    id: "seed-3",
+    title: "강사님이 친절해서 긴장이 확 줄었습니다",
+    slug: "seed-kind-coach",
+    excerpt: "실수해도 차분하게 설명해주셔서 부담이 없었어요.",
     content:
-      "1:1 맞춤형 코칭과 응대가 정말 전문적이었고, 과정 내내 불안하지 않게 세심하게 배려해주셨어요.",
+      "처음에는 실수할까 봐 말을 잘 못했는데, 분위기를 편하게 만들어주셔서 질문도 많이 하고 더 빨리 늘었습니다. 초보한테 정말 중요한 부분이라고 느꼈어요.",
     author_name: "박**",
-    created_at: "2026-02-10",
-    image_url: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80",
+    created_at: "2026-03-17",
+    image_url:
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
+    is_published: true,
+  },
+  {
+    id: "seed-4",
+    title: "SUV 연수 선택했는데 시야 잡는 법이 좋아요",
+    slug: "seed-suv-lesson",
+    excerpt: "차체 큰 차량이 막연히 무서웠는데 기준점을 익혔습니다.",
+    content:
+      "SUV가 처음이라 차선 감각이 어려웠는데, 차폭 감각과 백미러 체크 루틴을 반복해서 알려주셔서 금방 익숙해졌어요. 장거리 주행도 자신감이 생겼습니다.",
+    author_name: "최**",
+    created_at: "2026-03-14",
+    image_url:
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80",
+    is_published: true,
+  },
+  {
+    id: "seed-5",
+    title: "차선 변경 타이밍이 드디어 보이기 시작했어요",
+    slug: "seed-lane-change",
+    excerpt: "합류/차선 변경이 어려운 분들에게 특히 추천합니다.",
+    content:
+      "늘 깜빡이 켜고도 못 들어가서 당황했는데, 시선 분배와 진입 타이밍을 익히고 나서 훨씬 자연스러워졌어요. 도심에서 스트레스가 줄었습니다.",
+    author_name: "정**",
+    created_at: "2026-03-10",
+    image_url:
+      "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1200&q=80",
+    is_published: true,
+  },
+  {
+    id: "seed-6",
+    title: "골목길/이면도로 공포가 사라졌습니다",
+    slug: "seed-alley-road",
+    excerpt: "좁은 길 교행 요령을 배워서 일상 운전이 편해졌어요.",
+    content:
+      "양쪽 주차된 골목길에서 늘 식은땀이 났는데, 속도 조절과 차폭 판단 포인트를 알려주셔서 예전보다 훨씬 안정적입니다.",
+    author_name: "윤**",
+    created_at: "2026-03-06",
+    image_url:
+      "https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1200&q=80",
+    is_published: true,
+  },
+  {
+    id: "seed-7",
+    title: "사고/보험 안내가 명확해서 안심됐어요",
+    slug: "seed-insurance-trust",
+    excerpt: "연수 전 안내가 투명해서 심리적으로 편했습니다.",
+    content:
+      "혹시 모를 상황이 걱정됐는데, 보장 범위와 진행 절차를 미리 안내받아 마음이 편했어요. 안전 우선 수업이라는 점이 신뢰를 줬습니다.",
+    author_name: "한**",
+    created_at: "2026-03-03",
+    image_url:
+      "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1200&q=80",
+    is_published: true,
+  },
+  {
+    id: "seed-8",
+    title: "강사 교체 제도가 있어 시작하기 쉬웠어요",
+    slug: "seed-coach-switch",
+    excerpt: "수강생 입장에서 선택권이 있다는 점이 좋았습니다.",
+    content:
+      "초보라 강사와 잘 맞을지 걱정이 컸는데 교체 가능 정책이 있어 부담이 덜했어요. 실제 수업도 친절했고 만족도가 높았습니다.",
+    author_name: "서**",
+    created_at: "2026-02-28",
+    image_url:
+      "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1200&q=80",
+    is_published: true,
+  },
+  {
+    id: "seed-9",
+    title: "연수 끝나고도 혼자 운전할 자신감이 생겼어요",
+    slug: "seed-self-driving-confidence",
+    excerpt: "단순 코스 반복이 아니라 실전 습관을 만들어 준 수업이었습니다.",
+    content:
+      "연수 직후뿐 아니라 그 이후가 더 걱정이었는데, 스스로 점검하는 체크리스트를 알려주셔서 꾸준히 안정적으로 운전하고 있어요.",
+    author_name: "임**",
+    created_at: "2026-02-24",
+    image_url:
+      "https://images.unsplash.com/photo-1471444928139-48c5bf5173f8?auto=format&fit=crop&w=1200&q=80",
     is_published: true,
   },
 ];

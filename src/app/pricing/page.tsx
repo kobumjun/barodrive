@@ -1,24 +1,75 @@
 import Link from "next/link";
+import Image from "next/image";
 import { InquiryForm } from "@/components/inquiry-form";
 import { SectionTitle } from "@/components/section-title";
 import { getPricing } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
 
+const coverByKey = {
+  self_car_10h:
+    "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
+  sedan_10h:
+    "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80",
+  suv_10h:
+    "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1200&q=80",
+};
+
 export default async function PricingPage() {
   const pricing = await getPricing();
 
   return (
-    <div>
-      <SectionTitle eyebrow="연수 가격" title="투명한 가격으로 시작하는 프리미엄 코칭" />
-      <div className="grid gap-4 md:grid-cols-3">
-        {pricing.map((item) => (
-          <article key={item.key} className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-zinc-200">
-            <h3 className="text-lg font-bold">{item.label}</h3>
-            <p className="mt-3 text-3xl font-black text-zinc-900">{formatPrice(item.price)}</p>
-            <Link href="#inquiry-form" className="mt-6 inline-block rounded-full bg-amber-500 px-4 py-2 font-semibold text-zinc-950">신청하기</Link>
-          </article>
-        ))}
-      </div>
+    <div className="space-y-14">
+      <section className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-7 shadow-sm md:p-10">
+        <div className="absolute right-0 top-0 h-32 w-32 rounded-bl-full bg-amber-100" />
+        <SectionTitle
+          eyebrow="연수가격 / 신청"
+          title="가격은 투명하게, 코칭은 프리미엄하게"
+          description="관리자에서 실시간 수정되는 요금으로 운영됩니다."
+        />
+        <div className="grid gap-5 md:grid-cols-3">
+          {pricing.map((item) => {
+            const oldPrice = item.price + 40000;
+            const isRecommended = item.key === "sedan_10h";
+
+            return (
+              <article
+                key={item.key}
+                className={`overflow-hidden rounded-3xl border bg-white shadow-md transition hover:-translate-y-1 ${
+                  isRecommended ? "border-amber-300 shadow-amber-100" : "border-zinc-200"
+                }`}
+              >
+                <div className="relative h-40">
+                  <Image
+                    src={coverByKey[item.key]}
+                    alt={item.label}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  {isRecommended ? (
+                    <span className="absolute right-3 top-3 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-zinc-900">
+                      추천 플랜
+                    </span>
+                  ) : null}
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-bold text-zinc-900">{item.label}</h3>
+                  <p className="mt-3 text-sm text-zinc-500 line-through">{formatPrice(oldPrice)}</p>
+                  <p className="text-3xl font-extrabold text-zinc-900">{formatPrice(item.price)}</p>
+                  <p className="mt-2 text-xs text-zinc-500">보험 안내/강사 매칭/동선 상담 포함</p>
+                  <Link
+                    href="#inquiry-form"
+                    className="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-zinc-900 px-4 py-3 text-sm font-bold text-white transition hover:bg-zinc-700"
+                  >
+                    이 플랜 신청하기
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
       <section>
         <InquiryForm />
       </section>
