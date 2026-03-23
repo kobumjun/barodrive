@@ -3,9 +3,9 @@
 import { FormEvent, useMemo, useState } from "react";
 import { getSupabaseClient } from "@/lib/supabase";
 import { formatDate, generateReviewSlug, slugify } from "@/lib/utils";
-import { Inquiry, PricingItem, Review } from "@/types";
+import { Inquiry, PricingItem, Review, SiteSettings } from "@/types";
 
-type Tab = "pricing" | "reviews" | "inquiries";
+type Tab = "pricing" | "reviews" | "inquiries" | "settings";
 
 const imageTypes = ["image/jpeg", "image/png", "image/webp"];
 const maxImageSize = 5 * 1024 * 1024;
@@ -20,15 +20,18 @@ export function AdminDashboard({
   initialPricing,
   initialReviews,
   initialInquiries,
+  initialSiteSettings,
 }: {
   initialPricing: PricingItem[];
   initialReviews: Review[];
   initialInquiries: Inquiry[];
+  initialSiteSettings: SiteSettings;
 }) {
   const [tab, setTab] = useState<Tab>("pricing");
   const [pricing, setPricing] = useState(initialPricing);
   const [reviews, setReviews] = useState(initialReviews);
   const [inquiries] = useState(initialInquiries);
+  const [sitePhone, setSitePhone] = useState(initialSiteSettings.phone_number);
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
@@ -224,6 +227,15 @@ export function AdminDashboard({
     location.reload();
   }
 
+  async function saveSiteSettings() {
+    const response = await fetch("/api/admin/site-settings", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone_number: sitePhone }),
+    });
+    setMessage(response.ok ? "사이트 연락처 저장 완료" : "사이트 연락처 저장 실패");
+  }
+
   return (
     <div className="grid gap-6 md:grid-cols-[220px_1fr]">
       <aside className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-zinc-200">
@@ -233,6 +245,7 @@ export function AdminDashboard({
             ["pricing", "연수 가격"],
             ["reviews", "후기 관리"],
             ["inquiries", "신청 내역"],
+            ["settings", "연락처 설정"],
           ].map(([key, label]) => (
             <button key={key} onClick={() => setTab(key as Tab)} className={`w-full rounded-lg px-3 py-2 text-left text-sm font-semibold ${tab === key ? "bg-zinc-900 text-white" : "bg-zinc-100 text-zinc-700"}`}>
               {label}
@@ -372,6 +385,28 @@ export function AdminDashboard({
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+        ) : null}
+
+        {tab === "settings" ? (
+          <div>
+            <h2 className="text-xl font-bold">사이트 연락처 설정</h2>
+            <p className="mt-2 text-sm text-zinc-600">대표 전화번호를 수정하면 사이트 전체 전화 버튼에 반영됩니다.</p>
+            <div className="mt-4 grid max-w-md gap-2">
+              <label className="text-sm font-semibold">대표 전화번호</label>
+              <input
+                value={sitePhone}
+                onChange={(event) => setSitePhone(event.target.value)}
+                className="rounded-lg border border-zinc-200 px-3 py-2"
+                placeholder="010-8877-1028"
+              />
+              <button
+                onClick={saveSiteSettings}
+                className="mt-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-semibold text-white"
+              >
+                저장
+              </button>
             </div>
           </div>
         ) : null}

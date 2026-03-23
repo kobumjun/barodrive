@@ -4,6 +4,7 @@ import { InquiryForm } from "@/components/inquiry-form";
 import { SectionTitle } from "@/components/section-title";
 import { getPricing } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
+import { getSitePhoneNumber } from "@/lib/site-settings";
 
 const coverByKey = {
   self_car_10h:
@@ -22,6 +23,7 @@ const order: Array<"self_car_10h" | "sedan_10h" | "suv_10h"> = [
 
 export default async function PricingPage() {
   const pricing = await getPricing();
+  const phoneNumber = await getSitePhoneNumber();
   const sortedPricing = [...pricing].sort(
     (a, b) => order.indexOf(a.key) - order.indexOf(b.key),
   );
@@ -67,7 +69,7 @@ export default async function PricingPage() {
       </section>
 
       <section>
-        <InquiryForm />
+        <InquiryForm phoneNumber={phoneNumber} />
       </section>
     </div>
   );

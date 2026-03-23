@@ -1,8 +1,7 @@
 import { FAQItem, PricingItem, Review } from "@/types";
 
 export const BRAND = "바로드라이브";
-export const PHONE_DISPLAY = "010-8877-1028";
-export const PHONE_LINK = "tel:01088771028";
+export const DEFAULT_PHONE_NUMBER = "010-8877-1028";
 export const KAKAO_CHAT_URL =
   process.env.NEXT_PUBLIC_KAKAO_CHAT_URL ?? "https://open.kakao.com/o/placeholder";
 

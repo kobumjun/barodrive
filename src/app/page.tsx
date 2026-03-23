@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FAQAccordion } from "@/components/faq-accordion";
+import { HomePriceSummary } from "@/components/home-price-summary";
 import { SectionTitle } from "@/components/section-title";
-import { FAQS, PHONE_DISPLAY, PHONE_LINK } from "@/lib/constants";
+import { FAQS } from "@/lib/constants";
 import { getPublishedReviews } from "@/lib/data";
 import { formatDate } from "@/lib/utils";
+import { getSitePhoneNumber, toPhoneLink } from "@/lib/site-settings";
 
 const keywords = ["초보 운전자", "장롱면허", "주차 자신감", "도로연수", "맞춤 코칭"];
 
@@ -37,6 +39,7 @@ const worryBubbles = [
 
 export default async function HomePage() {
   const reviews = await getPublishedReviews(4);
+  const phoneNumber = await getSitePhoneNumber();
 
   return (
     <div className="space-y-20 pb-8">
@@ -67,10 +70,10 @@ export default async function HomePage() {
                 연수 신청하기
               </Link>
               <a
-                href={PHONE_LINK}
+                href={toPhoneLink(phoneNumber)}
                 className="rounded-full border border-white/40 bg-white/10 px-6 py-3 font-semibold backdrop-blur transition hover:bg-white/20"
               >
-                전화 상담하기 ({PHONE_DISPLAY})
+                전화 상담하기 ({phoneNumber})
               </a>
             </div>
             <div className="mt-6 flex flex-wrap gap-2">
@@ -224,6 +227,8 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <HomePriceSummary />
+
       <section className="grid gap-8 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm md:grid-cols-[0.9fr_1.1fr] md:p-8">
         <div>
           <p className="mb-2 text-sm font-semibold text-amber-500">FAQ</p>
@@ -245,7 +250,7 @@ export default async function HomePage() {
           <Link href="/pricing#inquiry-form" className="rounded-full bg-zinc-900 px-5 py-3 text-sm font-bold text-white">
             지금 신청하기
           </Link>
-          <a href={PHONE_LINK} className="rounded-full bg-white px-5 py-3 text-sm font-bold">
+          <a href={toPhoneLink(phoneNumber)} className="rounded-full bg-white px-5 py-3 text-sm font-bold">
             전화 상담
           </a>
         </div>

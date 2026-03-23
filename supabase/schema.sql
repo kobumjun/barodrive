@@ -39,5 +39,16 @@ create table if not exists reviews (
   is_published boolean default true
 );
 
+create table if not exists site_settings (
+  id integer primary key,
+  phone_number text not null,
+  sms_number text,
+  kakao_chat_url text
+);
+
+insert into site_settings (id, phone_number)
+values (1, '010-8877-1028')
+on conflict (id) do nothing;
+
 -- Storage bucket: reviews (public)
 -- In Supabase dashboard, create public bucket named 'reviews'.

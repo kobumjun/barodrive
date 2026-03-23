@@ -1,12 +1,12 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import { KAKAO_CHAT_URL, PHONE_DISPLAY, PHONE_LINK } from "@/lib/constants";
+import { KAKAO_CHAT_URL } from "@/lib/constants";
+import { toPhoneLink } from "@/lib/site-settings";
 
 const trainingTypes = ["자차", "연수차 승용", "연수차 SUV"];
-const SMS_NUMBER = "01088771028";
 
-export function InquiryForm() {
+export function InquiryForm({ phoneNumber }: { phoneNumber: string }) {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string>("");
 
@@ -38,7 +38,8 @@ export function InquiryForm() {
       `문의내용: ${message || "없음"}`,
     ].join("\n");
 
-    const smsUrl = `sms:${SMS_NUMBER}?body=${encodeURIComponent(smsBody)}`;
+    const smsDigits = phoneNumber.replace(/[^0-9]/g, "");
+    const smsUrl = `sms:${smsDigits}?body=${encodeURIComponent(smsBody)}`;
 
     setLoading(false);
 
@@ -75,7 +76,7 @@ export function InquiryForm() {
       </form>
       {result ? <p className="mt-4 text-sm font-medium text-zinc-800">{result}</p> : null}
       <div className="mt-6 flex flex-wrap gap-3 text-sm">
-        <a href={PHONE_LINK} className="rounded-full bg-zinc-900 px-4 py-2 font-semibold text-white">전화문의 {PHONE_DISPLAY}</a>
+        <a href={toPhoneLink(phoneNumber)} className="rounded-full bg-zinc-900 px-4 py-2 font-semibold text-white">전화문의 {phoneNumber}</a>
         <a href={KAKAO_CHAT_URL} target="_blank" rel="noreferrer" className="rounded-full border border-zinc-300 px-4 py-2 font-semibold text-zinc-800">카카오톡 상담</a>
       </div>
     </section>

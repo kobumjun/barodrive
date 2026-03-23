@@ -36,3 +36,10 @@ export type FAQItem = {
   question: string;
   answer: string;
 };
+
+export type SiteSettings = {
+  id: number;
+  phone_number: string;
+  sms_number?: string | null;
+  kakao_chat_url?: string | null;
+};
