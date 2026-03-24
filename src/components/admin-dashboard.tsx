@@ -171,6 +171,10 @@ export function AdminDashboard({
     if (!excerpt) return;
     const content = window.prompt("새 본문", review.content);
     if (!content) return;
+    const dateDefault = String(review.created_at).slice(0, 10);
+    const dateInput = window.prompt("작성일 (YYYY-MM-DD)", dateDefault);
+    const created_at =
+      dateInput && dateInput.trim() ? dateInput.trim() : review.created_at;
 
     const nextSlug = slugify(title) || review.slug || generateReviewSlug(title);
     const response = await fetch(`/api/admin/reviews/${review.id}`, {
@@ -181,6 +185,7 @@ export function AdminDashboard({
         excerpt,
         content,
         slug: nextSlug,
+        created_at,
       }),
     });
 
@@ -191,7 +196,7 @@ export function AdminDashboard({
     setReviews((prev) =>
       prev.map((item) =>
         item.id === review.id
-          ? { ...item, title, excerpt, content, slug: nextSlug }
+          ? { ...item, title, excerpt, content, slug: nextSlug, created_at }
           : item,
       ),
     );

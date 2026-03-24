@@ -208,8 +208,10 @@ export default async function HomePage() {
                 <Image
                   src={review.image_url}
                   alt={review.title}
-                  width={800}
-                  height={480}
+                  width={480}
+                  height={300}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  loading="lazy"
                   className="h-44 w-full object-cover transition duration-300 group-hover:scale-105"
                 />
                 <div className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-zinc-700">

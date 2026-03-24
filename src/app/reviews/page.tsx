@@ -42,8 +42,10 @@ export default async function ReviewsPage({
               <Image
                 src={review.image_url}
                 alt={review.title}
-                width={900}
-                height={560}
+                width={480}
+                height={300}
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                loading="lazy"
                 className="h-48 w-full object-cover transition duration-300 group-hover:scale-105"
               />
               <span className="absolute left-3 top-3 rounded-full bg-zinc-900/80 px-2.5 py-1 text-xs font-semibold text-white">
