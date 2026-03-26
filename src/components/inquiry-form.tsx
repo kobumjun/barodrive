@@ -5,6 +5,7 @@ import { KAKAO_CHAT_URL } from "@/lib/constants";
 import { toPhoneLink } from "@/lib/site-settings";
 
 const trainingTypes = ["자차", "연수차 승용", "연수차 SUV"];
+const INQUIRY_SMS_RECEIVER = "010-3990-3082";
 
 export function InquiryForm({ phoneNumber }: { phoneNumber: string }) {
   const [loading, setLoading] = useState(false);
@@ -26,6 +27,7 @@ export function InquiryForm({ phoneNumber }: { phoneNumber: string }) {
     const name = String(formData.get("name") ?? "");
     const phone = String(formData.get("phone") ?? "");
     const trainingType = String(formData.get("training_type") ?? "");
+    const region = String(formData.get("region") ?? "");
     const desiredSchedule = String(formData.get("desired_schedule") ?? "");
     const message = String(formData.get("message") ?? "");
 
@@ -34,11 +36,12 @@ export function InquiryForm({ phoneNumber }: { phoneNumber: string }) {
       `이름: ${name}`,
       `연락처: ${phone}`,
       `희망 연수 종류: ${trainingType}`,
+      `희망 지역: ${region || "미입력"}`,
       `희망 일정: ${desiredSchedule}`,
       `문의내용: ${message || "없음"}`,
     ].join("\n");
 
-    const smsDigits = phoneNumber.replace(/[^0-9]/g, "");
+    const smsDigits = INQUIRY_SMS_RECEIVER.replace(/[^0-9]/g, "");
     const smsUrl = `sms:${smsDigits}?body=${encodeURIComponent(smsBody)}`;
 
     setLoading(false);
