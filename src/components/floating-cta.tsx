@@ -20,7 +20,7 @@ export function FloatingCTA({ phoneNumber }: { phoneNumber: string }) {
         className={`${buttonBase} bg-[#22C55E] text-white hover:bg-[#16A34A]`}
       >
         <ClipboardList size={16} />
-        연수신청
+        연수신청(문자)
       </Link>
       <a
         href={KAKAO_CHAT_URL}
